@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}John Doe - Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">John Doe</h1>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}" {% if request.endpoint == 'home' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="{{ url_for('education') }}" {% if request.endpoint == 'education' %}class="active"{% endif %}>Education</a></li>
+                    <li><a href="{{ url_for('experience') }}" {% if request.endpoint == 'experience' %}class="active"{% endif %}>Experience</a></li>
+                    <li><a href="{{ url_for('projects') }}" {% if request.endpoint == 'projects' %}class="active"{% endif %}>Projects</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 John Doe. All rights reserved.</p>
+            <div class="contact-info">
+                <p>Email: john.doe@email.com | Phone: (555) 123-4567</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

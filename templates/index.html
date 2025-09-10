@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}John Doe - Portfolio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>John Doe</h1>
+        <h2>Full Stack Developer</h2>
+        <p class="hero-description">
+            Passionate software developer with 5+ years of experience creating innovative web applications 
+            and solving complex technical challenges. Specialized in Python, JavaScript, and modern web technologies.
+        </p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('projects') }}" class="btn primary">View My Work</a>
+            <a href="#contact" class="btn secondary">Get In Touch</a>
+        </div>
+    </div>
+</section>
+
+<section class="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm a dedicated full-stack developer who loves building scalable web applications 
+                    and exploring new technologies. My journey in software development began during 
+                    my computer science studies, and I've been passionate about creating digital 
+                    solutions that make a real impact ever since.
+                </p>
+                <p>
+                    When I'm not coding, you can find me contributing to open-source projects, 
+                    learning new frameworks, or sharing knowledge with the developer community 
+                    through technical blog posts and mentoring.
+                </p>
+            </div>
+            <div class="skills">
+                <h3>Core Technologies</h3>
+                <div class="skill-tags">
+                    <span class="skill">Python</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                    <span class="skill">Flask</span>
+                    <span class="skill">Django</span>
+                    <span class="skill">PostgreSQL</span>
+                    <span class="skill">AWS</span>
+                    <span class="skill">Docker</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="highlights">
+    <div class="container">
+        <h2>Quick Overview</h2>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <h3>🎓 Education</h3>
+                <p>Computer Science degree with focus on software engineering and data structures.</p>
+                <a href="{{ url_for('education') }}">Learn More →</a>
+            </div>
+            <div class="highlight-card">
+                <h3>💼 Experience</h3>
+                <p>5+ years developing web applications at innovative tech companies.</p>
+                <a href="{{ url_for('experience') }}">View Details →</a>
+            </div>
+            <div class="highlight-card">
+                <h3>🚀 Projects</h3>
+                <p>Portfolio of personal and professional projects showcasing diverse skills.</p>
+                <a href="{{ url_for('projects') }}">Explore Projects →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="about">
+    <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="about-text">
+            <p>Feel free to reach out for collaborations or just a friendly hello</p>
+            <p>Email: john.doe@email.com</p>
+            <p>Phone: (555) 123-4567</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
