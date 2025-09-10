@@ -8,8 +8,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
+    color: #f7f7f7;
+    background-color: #1a1a1a;
 }
 
 .container {
@@ -20,8 +20,8 @@ body {
 
 /* Navigation */
 header {
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: #2a2a2a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -40,7 +40,7 @@ header {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2c3e50;
+    color: #960018;
 }
 
 .nav-links {
@@ -51,7 +51,7 @@ header {
 
 .nav-links a {
     text-decoration: none;
-    color: #555;
+    color: #f7f7f7;
     font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -60,8 +60,8 @@ header {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #3498db;
-    background-color: #f1f8ff;
+    color: #960018;
+    background-color: rgba(150, 0, 24, 0.1);
 }
 
 /* Buttons */
@@ -77,29 +77,29 @@ header {
 }
 
 .btn.primary {
-    background-color: #3498db;
+    background-color: #960018;
     color: white;
 }
 
 .btn.primary:hover {
-    background-color: #2980b9;
+    background-color: #b30000;
     transform: translateY(-2px);
 }
 
 .btn.secondary {
     background-color: transparent;
-    color: #3498db;
-    border: 2px solid #3498db;
+    color: #960018;
+    border: 2px solid #960018;
 }
 
 .btn.secondary:hover {
-    background-color: #3498db;
+    background-color: #960018;
     color: white;
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #960018 0%, #4a0000 100%);
     color: white;
     padding: 100px 0;
     text-align: center;
@@ -135,14 +135,14 @@ header {
 /* About Section */
 .about {
     padding: 80px 0;
-    background: white;
+    background: #2a2a2a;
 }
 
 .about h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #2c3e50;
+    color: #f7f7f7;
 }
 
 .about-grid {
@@ -155,13 +155,13 @@ header {
 .about-text p {
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    color: #555;
+    color: #e0e0e0;
 }
 
 .skills h3 {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
-    color: #2c3e50;
+    color: #f7f7f7;
 }
 
 .skill-tags {
@@ -171,8 +171,8 @@ header {
 }
 
 .skill {
-    background-color: #e3f2fd;
-    color: #1976d2;
+    background-color: rgba(150, 0, 24, 0.2);
+    color: #ff9999;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -182,14 +182,14 @@ header {
 /* Highlights Section */
 .highlights {
     padding: 80px 0;
-    background-color: #f8f9fa;
+    background-color: #1a1a1a;
 }
 
 .highlights h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: #2c3e50;
+    color: #f7f7f7;
 }
 
 .highlights-grid {
@@ -199,11 +199,11 @@ header {
 }
 
 .highlight-card {
-    background: white;
+    background: #2a2a2a;
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transition: transform 0.3s ease;
 }
 
@@ -214,27 +214,27 @@ header {
 .highlight-card h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: #f7f7f7;
 }
 
 .highlight-card p {
-    color: #666;
+    color: #e0e0e0;
     margin-bottom: 1.5rem;
 }
 
 .highlight-card a {
-    color: #3498db;
+    color: #960018;
     text-decoration: none;
     font-weight: 600;
 }
 
 .highlight-card a:hover {
-    color: #2980b9;
+    color: #ff9999;
 }
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #960018 0%, #4a0000 100%);
     color: white;
     padding: 60px 0;
     text-align: center;
@@ -534,10 +534,11 @@ header {
 
 /* Footer */
 footer {
-    background-color: #2c3e50;
+    background-color: #2a2a2a;
     color: white;
     padding: 3rem 0;
     margin-top: auto;
+    border-top: 1px solid rgba(150, 0, 24, 0.3);
 }
 
 .footer-container {
