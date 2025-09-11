@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}John Doe - Portfolio{% endblock %}</title>
+    <title>{% block title %}Johnathon - Portfolio{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
         <nav>
             <div class="nav-container">
-                <h1 class="logo">John Doe</h1>
+                <h1 class="logo">Johnathon Sperry</h1>
                 <ul class="nav-links">
                     <li><a href="{{ url_for('home') }}" {% if request.endpoint == 'home' %}class="active"{% endif %}>Home</a></li>
                     <li><a href="{{ url_for('education') }}" {% if request.endpoint == 'education' %}class="active"{% endif %}>Education</a></li>
@@ -28,9 +28,9 @@
     
     <footer>
         <div class="footer-container">
-            <p>&copy; 2025 John Doe. All rights reserved.</p>
+            <p>&copy; 2025 Johnathon Sperry. All rights reserved.</p>
             <div class="contact-info">
-                <p>Email: john.doe@email.com | Phone: (555) 123-4567</p>
+                <p>Email: johnathontech@gmail.com | Phone: (586) 477-7348</p>
             </div>
         </div>
     </footer>
