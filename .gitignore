@@ -24,15 +24,3 @@ wheels/
 # Environment variables
 .env
 .env.*
-
-# Development files not needed in build
-app.py
-build.py
-freeze.py
-pyproject.toml
-requirements.txt
-
-# Keep only necessary directories and files
-!/static/
-!/templates/
-!README.md
