@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret-key')  # Always set a secure key in production
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret-key')
 app.config['ENV'] = 'production'
 app.config['TESTING'] = False
 
@@ -40,6 +40,11 @@ def experience():
 def projects():
     return render_template('projects.html')
 
+# This is important for Vercel - expose the app
 if __name__ == '__main__':
     # Ensure debug mode is disabled in production
-    app.run(debug=False, host='0.0.0.0', port=8000) 
+    app.run(debug=False, host='0.0.0.0', port=8000)
+
+# For Vercel serverless deployment
+def handler(request):
+    return app(request.environ, lambda status, headers: None)
