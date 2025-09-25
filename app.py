@@ -46,5 +46,5 @@ if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=8000)
 
 # For Vercel serverless deployment
-def handler(request):
-    return app(request.environ, lambda status, headers: None)
+def handler(event, context):
+    return app
