@@ -1,6 +1,10 @@
 from flask import Flask, render_template
 from werkzeug.middleware.proxy_fix import ProxyFix
 from dotenv import load_dotenv
+from urllib.parse import urlencode
+from io import StringIO
+import logging
+import sys
 import os
 
 # Load environment variables
@@ -47,4 +51,58 @@ if __name__ == '__main__':
 
 # For Vercel serverless deployment
 def handler(event, context):
-    return app
+    # Capture log output
+    log_output = StringIO()
+    logging.basicConfig(stream=log_output, level=logging.DEBUG)
+
+    try:
+        # Create WSGI environment from the event
+        env = {
+            'REQUEST_METHOD': event.get('httpMethod', ''),
+            'SCRIPT_NAME': '',
+            'PATH_INFO': event.get('path', ''),
+            'QUERY_STRING': urlencode(event.get('queryStringParameters', {})),
+            'SERVER_NAME': 'vercel',
+            'SERVER_PORT': '443',
+            'SERVER_PROTOCOL': 'HTTP/1.1',
+            'wsgi.version': (1, 0),
+            'wsgi.url_scheme': 'https',
+            'wsgi.input': StringIO(''),
+            'wsgi.errors': sys.stderr,
+            'wsgi.multithread': False,
+            'wsgi.multiprocess': False,
+            'wsgi.run_once': False,
+        }
+
+        # Add headers
+        headers = event.get('headers', {})
+        for key, value in headers.items():
+            key = key.upper().replace('-', '_')
+            if key not in ('CONTENT_TYPE', 'CONTENT_LENGTH'):
+                key = f'HTTP_{key}'
+            env[key] = value
+
+        # Response container
+        response = {}
+        headers = []
+
+        def start_response(status, response_headers, exc_info=None):
+            response['statusCode'] = int(status.split()[0])
+            headers.extend(response_headers)
+
+        # Get response from Flask app
+        resp = app(env, start_response)
+        response['body'] = b''.join(resp).decode('utf-8')
+        
+        # Format headers for Lambda response
+        response['headers'] = dict(headers)
+
+        return response
+
+    except Exception as e:
+        logging.exception('Error processing request')
+        return {
+            'statusCode': 500,
+            'body': str(e),
+            'headers': {'Content-Type': 'text/plain'},
+        }
