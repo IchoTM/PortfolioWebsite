@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Projects - John Doe{% endblock %}
+{% block title %}Projects - Johnathon{% endblock %}
 
 {% block content %}
 <section class="page-header">
@@ -13,6 +13,25 @@
         <div class="projects-grid">
             <div class="project-card featured">
                 <div class="project-image">
+                    <img src="{{ url_for('static', filename='images/EAWebsite.png') }}" alt="Project Screenshot">
+                </div>
+                <div class="project-info">
+                    <h2>EcoAgent</h2>
+                    <p class="project-description">
+                        Analyze and Optimize your Carbon Footprint with the Power of AI
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech">Python</span>
+                        <span class="tech">JavaScript</span>
+                        <span class="tech">HTML</span>
+                        <span class="tech">CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/IchoTM/EcoAgent" class="project-button">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-image">
                     <img src="{{ url_for('static', filename='images/website_image.jpg') }}" alt="Project Screenshot">
                 </div>
                 <div class="project-info">
@@ -22,12 +41,10 @@
                     </p>
                     <div class="tech-stack">
                         <span class="tech">Python</span>
-                        <span class="tech">Flask</span>
                         <span class="tech">HTML</span>
                         <span class="tech">CSS</span>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </section>
