@@ -50,54 +50,67 @@ if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=8000)
 
 # For Vercel serverless deployment
+def app_wsgi(environ, start_response):
+    """WSGI application"""
+    return app(environ, start_response)
+
 def handler(event, context):
-    """
-    Serverless function handler for Vercel
-    """
-    try:
-        # Create WSGI environment
-        path = event.get('path', '')
-        headers = event.get('headers', {})
-        
-        environ = {
-            'REQUEST_METHOD': event.get('httpMethod', 'GET'),
-            'SCRIPT_NAME': '',
-            'PATH_INFO': path,
-            'QUERY_STRING': urlencode(event.get('queryStringParameters', {})),
-            'SERVER_NAME': headers.get('host', 'localhost'),
-            'SERVER_PORT': '443',
-            'SERVER_PROTOCOL': 'HTTP/1.1',
-            'wsgi.version': (1, 0),
-            'wsgi.url_scheme': 'https',
-            'wsgi.input': StringIO(),
-            'wsgi.errors': sys.stderr,
-            'wsgi.multithread': False,
-            'wsgi.multiprocess': False,
-            'wsgi.run_once': False,
+    """Serverless function handler for Vercel"""
+    if not event:
+        return {
+            'statusCode': 500,
+            'body': 'No event data received',
+            'headers': {'Content-Type': 'text/plain'}
         }
 
-        # Add headers to environment
-        for key, value in headers.items():
-            key = 'HTTP_' + key.upper().replace('-', '_')
-            if key not in ('HTTP_CONTENT_TYPE', 'HTTP_CONTENT_LENGTH'):
-                environ[key] = value
+    # Extract request information
+    method = event.get('httpMethod', 'GET')
+    path = event.get('path', '/')
+    query = event.get('queryStringParameters', {})
+    headers = event.get('headers', {})
+    body = event.get('body', '')
 
-        # Handle the request
-        response_data = {'statusCode': 500, 'body': '', 'headers': {}}
-        
-        def start_response(status, response_headers, exc_info=None):
-            status_code = int(status.split()[0])
-            response_data['statusCode'] = status_code
-            response_data['headers'].update(dict(response_headers))
-        
+    # Create minimal WSGI environment
+    environ = {
+        'REQUEST_METHOD': method,
+        'PATH_INFO': path,
+        'QUERY_STRING': urlencode(query) if query else '',
+        'CONTENT_LENGTH': str(len(body) if body else ''),
+        'SERVER_NAME': headers.get('host', 'vercel.app'),
+        'SERVER_PORT': '443',
+        'SERVER_PROTOCOL': 'HTTP/1.1',
+        'wsgi.version': (1, 0),
+        'wsgi.url_scheme': 'https',
+        'wsgi.input': StringIO(body if body else ''),
+        'wsgi.errors': sys.stderr,
+        'wsgi.multithread': False,
+        'wsgi.multiprocess': False,
+        'wsgi.run_once': False
+    }
+
+    # Add HTTP headers
+    for key, value in headers.items():
+        key = 'HTTP_' + key.upper().replace('-', '_')
+        environ[key] = value
+
+    # Response container
+    response = {
+        'statusCode': 500,
+        'headers': {},
+        'body': ''
+    }
+
+    def start_response(status, response_headers, exc_info=None):
+        status_code = int(status.split(' ')[0])
+        response['statusCode'] = status_code
+        response['headers'].update(dict(response_headers))
+
+    try:
         # Get response from Flask app
-        response_body = b''.join(app(environ, start_response))
-        response_data['body'] = response_body.decode('utf-8')
-        
-        return response_data
-
+        response_body = b''.join(app_wsgi(environ, start_response))
+        response['body'] = response_body.decode('utf-8')
+        return response
     except Exception as e:
-        logging.exception("Error processing request")
         return {
             'statusCode': 500,
             'body': str(e),

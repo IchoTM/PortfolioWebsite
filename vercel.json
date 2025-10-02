@@ -3,7 +3,8 @@
   "builds": [
     {
       "src": "app.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": { "runtime": "python3.9" }
     },
     {
       "src": "static/**",
@@ -16,8 +17,11 @@
       "dest": "/static/$1"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "app.py"
+      "dest": "/app.py"
     }
   ]
 }
