@@ -22,7 +22,7 @@ def add_security_headers(response):
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
-    response.headers['Content-Security-Policy'] = "default-src 'self'"
+    response.headers['Content-Security-Policy'] = "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"
     return response
 
 # Handle proxy headers correctly
@@ -50,21 +50,56 @@ if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0', port=8000)
 
 # For Vercel serverless deployment
-from http.server import BaseHTTPRequestHandler
-from werkzeug.wrappers import Request
-
-def handler(request):
-    if request.method == 'POST':
-        return app(request.environ, lambda s, h, e=None: [])
-    
-    url = request.url
-    base_url = f"{request.scheme}://{request.host}"
-    
-    with app.test_client() as test_client:
-        response = test_client.get(url.replace(base_url, ""))
+def handler(event, context):
+    """
+    Serverless function handler for Vercel
+    """
+    try:
+        # Create WSGI environment
+        path = event.get('path', '')
+        headers = event.get('headers', {})
         
-    return {
-        'statusCode': response.status_code,
-        'headers': dict(response.headers),
-        'body': response.get_data(as_text=True)
-    }
+        environ = {
+            'REQUEST_METHOD': event.get('httpMethod', 'GET'),
+            'SCRIPT_NAME': '',
+            'PATH_INFO': path,
+            'QUERY_STRING': urlencode(event.get('queryStringParameters', {})),
+            'SERVER_NAME': headers.get('host', 'localhost'),
+            'SERVER_PORT': '443',
+            'SERVER_PROTOCOL': 'HTTP/1.1',
+            'wsgi.version': (1, 0),
+            'wsgi.url_scheme': 'https',
+            'wsgi.input': StringIO(),
+            'wsgi.errors': sys.stderr,
+            'wsgi.multithread': False,
+            'wsgi.multiprocess': False,
+            'wsgi.run_once': False,
+        }
+
+        # Add headers to environment
+        for key, value in headers.items():
+            key = 'HTTP_' + key.upper().replace('-', '_')
+            if key not in ('HTTP_CONTENT_TYPE', 'HTTP_CONTENT_LENGTH'):
+                environ[key] = value
+
+        # Handle the request
+        response_data = {'statusCode': 500, 'body': '', 'headers': {}}
+        
+        def start_response(status, response_headers, exc_info=None):
+            status_code = int(status.split()[0])
+            response_data['statusCode'] = status_code
+            response_data['headers'].update(dict(response_headers))
+        
+        # Get response from Flask app
+        response_body = b''.join(app(environ, start_response))
+        response_data['body'] = response_body.decode('utf-8')
+        
+        return response_data
+
+    except Exception as e:
+        logging.exception("Error processing request")
+        return {
+            'statusCode': 500,
+            'body': str(e),
+            'headers': {'Content-Type': 'text/plain'}
+        }
