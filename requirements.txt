@@ -12,3 +12,4 @@ setuptools==80.9.0
 six==1.17.0
 uv==0.8.13
 wheel==0.46.1
+gunicorn==21.2.0
