@@ -12,6 +12,18 @@ body {
     background-color: #1a1a1a;
 }
 
+/* General link styles */
+a {
+    color: #ff6b6b;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #ffaaaa;
+    text-decoration: underline;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -51,7 +63,7 @@ header {
 
 .nav-links a {
     text-decoration: none;
-    color: #f7f7f7;
+    color: #ffffff;
     font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -60,8 +72,8 @@ header {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #960018;
-    background-color: rgba(150, 0, 24, 0.1);
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.15);
 }
 
 /* Buttons */
@@ -223,13 +235,14 @@ header {
 }
 
 .highlight-card a {
-    color: #960018;
+    color: #ff6b6b;
     text-decoration: none;
     font-weight: 600;
 }
 
 .highlight-card a:hover {
-    color: #ff9999;
+    color: #ffaaaa;
+    text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
 }
 
 /* Page Header */
@@ -672,7 +685,7 @@ footer {
 .project-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #960018;
+    background-color: #ff6b6b;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -681,7 +694,7 @@ footer {
 }
 
 .project-button:hover {
-    background-color: #b30000;
+    background-color: #ff5252;
     transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(150, 0, 24, 0.3);
+    box-shadow: 0 2px 12px rgba(255, 107, 107, 0.4);
 }
