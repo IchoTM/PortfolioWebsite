@@ -10,27 +10,39 @@
 
 <section class="projects-content">
     <div class="container">
-        <div class="projects-grid">
-            <div class="project-card featured">
-                <div class="project-image">
-                    <img src="{{ url_for('static', filename='images/EAWebsite.png') }}" alt="Project Screenshot">
-                </div>
-                <div class="project-info">
-                    <h2>EcoAgent</h2>
-                    <p class="project-description">
-                        Analyze and Optimize your Carbon Footprint with the Power of AI
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech">Python</span>
-                        <span class="tech">JavaScript</span>
-                        <span class="tech">HTML</span>
-                        <span class="tech">CSS</span>
+        <section class="featured-projects">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="featured-project">
+                <div class="project-content">
+                    <div class="project-header">
+                        <h3>EcoAgent</h3>
+                        <p class="project-subtitle">MHacks 25 Submision</p>
+                        <div class="tech-stack">
+                            <span class="tech">Python</span>
+                            <span class="tech">JavaScript</span>
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/IchoTM/EcoAgent" class="project-button">View on GitHub</a>
+                    <div class="project-body">
+                        <div class="project-image">
+                            <img src="{{ url_for('static', filename='images/EAWebsite.png') }}" alt="EcoAgent Project Screenshot">
+                        </div>
+                        <div class="project-details">
+                            <p class="project-description">
+                                Analyze and Optimize your Carbon Footprint with the Power of AI
+                            </p>
+                            <div class="project-extended-description">
+                                <p>EcoAgent is an innovative web application that helps individuals and businesses understand and reduce their carbon footprint through AI-powered analysis and personalized recommendations.</p>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/IchoTM/EcoAgent" class="project-button">View on GitHub</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="project-card">
                 <div class="project-info">
                     <h2>This Website</h2>
@@ -61,6 +73,42 @@
                 </div>
             </div>
         </div>
+=======
+        </section>
+
+        <section class="other-projects">
+            <h2 class="section-title">Other Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>This Website</h3>
+                        <p class="project-description">
+                            The simple portfolio website you are on right now
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech">Python</span>
+                            <span class="tech">HTML</span>
+                            <span class="tech">CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>NStrings</h3>
+                        <p class="project-description">
+                            A Basic C++ library to implement additional string functionallity.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech">C++</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/IchoTM/NStrings" class="project-button">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+>>>>>>> bc4adeb (Refactor project sections in HTML and CSS for improved layout and styling of featured and other projects)
     </div>
 </section>
 {% endblock %}
