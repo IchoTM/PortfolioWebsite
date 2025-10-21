@@ -215,6 +215,67 @@ a:not(.btn):not(.nav-links a):not(.project-button):not(.logo):hover {
     color: #f7f7f7;
 }
 
+/* Contact Section */
+.contact {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    border-top: 3px solid #960018;
+    border-bottom: 3px solid #960018;
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #f7f7f7;
+}
+
+.contact-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.contact-label {
+    font-weight: 600;
+    color: #ff9999;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-item a,
+.contact-item span:not(.contact-label) {
+    color: #f7f7f7;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #66b3ff;
+}
+
 .highlights-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -732,6 +793,11 @@ footer {
         grid-template-columns: 1fr;
     }
     
+    .contact-methods {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
     .education-header {
         flex-direction: column;
         align-items: flex-start;
@@ -831,7 +897,7 @@ footer {
 .project-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff6b6b;
+    background-color: #960018;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -840,7 +906,25 @@ footer {
 }
 
 .project-button:hover {
-    background-color: #ff5252;
+    background-color: #b30000;
     transform: translateY(-2px);
-    box-shadow: 0 2px 12px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 2px 12px rgba(150, 0, 24, 0.4);
+}
+
+.project-button.closed-source {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #960018;
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.project-button.closed-source:hover {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #960018;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
 }
