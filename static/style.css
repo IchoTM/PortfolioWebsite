@@ -246,22 +246,14 @@ a:not(.btn):not(.nav-links a):not(.project-button):not(.logo):hover {
 }
 
 .highlight-card a {
-<<<<<<< HEAD
     color: #ff6b6b;
-=======
-    color: #66b3ff;
->>>>>>> c5688e6 (Update contact information and enhance project sections with new projects and improved styling)
     text-decoration: none;
     font-weight: 600;
 }
 
 .highlight-card a:hover {
-<<<<<<< HEAD
     color: #ffaaaa;
     text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
-=======
-    color: #99ccff;
->>>>>>> c5688e6 (Update contact information and enhance project sections with new projects and improved styling)
 }
 
 /* Page Header */
