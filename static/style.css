@@ -76,6 +76,17 @@ header {
     background-color: rgba(255, 107, 107, 0.15);
 }
 
+/* General Links (not buttons) */
+a:not(.btn):not(.nav-links a):not(.project-button):not(.logo) {
+    color: #66b3ff;
+    text-decoration: none;
+}
+
+a:not(.btn):not(.nav-links a):not(.project-button):not(.logo):hover {
+    color: #99ccff;
+    text-decoration: underline;
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -235,14 +246,22 @@ header {
 }
 
 .highlight-card a {
+<<<<<<< HEAD
     color: #ff6b6b;
+=======
+    color: #66b3ff;
+>>>>>>> c5688e6 (Update contact information and enhance project sections with new projects and improved styling)
     text-decoration: none;
     font-weight: 600;
 }
 
 .highlight-card a:hover {
+<<<<<<< HEAD
     color: #ffaaaa;
     text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+=======
+    color: #99ccff;
+>>>>>>> c5688e6 (Update contact information and enhance project sections with new projects and improved styling)
 }
 
 /* Page Header */
@@ -555,7 +574,7 @@ header {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -684,6 +703,13 @@ footer {
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -742,7 +768,8 @@ footer {
     }
     
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
     
     .project-body {
@@ -796,6 +823,11 @@ footer {
     
     .project-info {
         padding: 1.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 }
 
